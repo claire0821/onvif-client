@@ -46,4 +46,22 @@ const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
 });
 
-export default request;
+const requestBackJson = extend({
+  prefix: 'http://192.168.1.221:9999/onvif', // 前缀, 一般用于覆盖统一设置的 prefix
+  errorHandler, // 默认错误处理
+  timeout: 5000, // 超时
+  responseType: 'json',
+});
+// // request拦截
+// requestBackJson.interceptors.request.use((url, options) => {
+//   return {
+//     url: `${url}&interceptors=yes`,
+//     options: { ...options, interceptors: true },
+//   };
+// })
+// // response拦截器, 处理response
+// request.interceptors.response.use(response => {
+//   return response.data;
+// });
+
+export { request, requestBackJson };

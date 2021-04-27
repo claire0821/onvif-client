@@ -49,4 +49,7 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  // 新加
+  'menu.onvif': 'onvif',
+  'menu.onvif.devices-management': '设备管理',
 };

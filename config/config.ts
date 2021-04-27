@@ -101,6 +101,24 @@ export default defineConfig({
                 },
               ],
             },
+            //onvif 添加路由
+            {
+              path: '/onvif',
+              name: 'onvif',
+              icon: 'dashboard',
+              routes: [
+                {
+                  path: '/',
+                  redirect: '/onvif/devices-management',
+                },
+                {
+                  name: 'devices-management',
+                  icon: 'smile',
+                  path: '/onvif/devices-management',
+                  component: './onvif/devices-management',
+                },
+              ],
+            },
             {
               path: '/form',
               icon: 'form',
