@@ -12,3 +12,9 @@ export type DevListItem = {
   ptzUrl: string;
   analyticsUrl: string;
 };
+
+export type SearchListItem = {
+  ip: string;
+  port: number;
+  onvifAddress: string;
+};
