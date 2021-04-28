@@ -5,4 +5,10 @@ export type DevListItem = {
   username: string;
   password: string;
   onvifAddress: string;
+  mediaUrl: string;
+  imagingUrl: string;
+  eventsUrl: string;
+  deviceUrl: string;
+  ptzUrl: string;
+  analyticsUrl: string;
 };
