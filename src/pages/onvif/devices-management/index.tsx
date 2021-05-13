@@ -30,7 +30,7 @@ const DevList: React.FC<DevManagementProps> = ({
     dispatch({
       type: 'devManagement/fetchLocalIP',
     });
-  }, []);
+  }, [dispatch]);
 
   const [ipSegment, setIPSegment] = React.useState('');
   const [visible, setVisible] = React.useState(false); // 添加设备窗口

@@ -129,6 +129,12 @@ export default defineConfig({
                   path: '/onvif/media-info',
                   component: './onvif/media-info',
                 },
+                {
+                  name: 'ptz-info',
+                  icon: 'smile',
+                  path: '/onvif/ptz-info',
+                  component: './onvif/ptz-info',
+                },
               ],
             },
             {

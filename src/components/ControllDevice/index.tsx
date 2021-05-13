@@ -1,5 +1,5 @@
 import React, {useEffect}from 'react';
-import {Select} from 'antd';
+import {Select, Button} from 'antd';
 import type {StateType} from '@/pages/onvif/devices-management/model';
 import type {StateType as DevStateType} from '@/pages/onvif/device-info/model';
 import type { Dispatch } from 'umi';
@@ -18,16 +18,17 @@ const DevSelect: React.FC<DevSelectProps> = ({
     devManagement,
     devIP
 }) => {
-    const [options,setOptions] = React.useState([])
-    useEffect(() => {
-        console.log()
-        const devs: [] = []
-        devManagement.devList.forEach(element => {
-            const str  = {value: element.ip, label: element.ip}
-            devs.push(str)
-        });
-        setOptions(devs)
-    }, [devManagement.devList]);
+
+    // const [options,setOptions] = React.useState([])
+    // useEffect(() => {
+    //     console.log('control')
+    //     const devs: [] = []
+    //     devManagement.devList.forEach(element => {
+    //         const str  = {value: element.ip, label: element.ip}
+    //         devs.push(str)
+    //     });
+    //     setOptions(devs)
+    // }, [devManagement.devList]);
 
     useEffect(() => {
         console.log(devIP);
@@ -43,10 +44,24 @@ const DevSelect: React.FC<DevSelectProps> = ({
             payload: {ip: value}
         });
     }
+    const handleRefresh = () => {
+        dispatch({
+            type: 'devManagement/fetch'
+        });
+    }
     return (
-        <Select style={{ width: 150 }}
-        options={options} onSelect={handleOnSelect}>
-        </Select>
+        <div>
+            <Button onClick={handleRefresh}>刷新</Button>
+            <Select style={{ minWidth: 200 }} onSelect={handleOnSelect}>
+            {devManagement.devList.map(item => (
+            <Select.Option key={item.ip} value={item.ip}>{item.ip}</Select.Option>
+            ))}
+            </Select>
+            {/* <Select style={{ width: 150 }}
+            options={options} onSelect={handleOnSelect}>
+            </Select> */}
+        </div>
+
     );
 };
 

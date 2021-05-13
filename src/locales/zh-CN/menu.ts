@@ -54,4 +54,5 @@ export default {
   'menu.onvif.devices-management': '设备管理',
   'menu.onvif.device-info': '设备信息',
   'menu.onvif.media-info': '媒体信息',
+  'menu.onvif.ptz-info': '云台信息',
 };

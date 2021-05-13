@@ -1,6 +1,6 @@
 import { getDevByIpSegment, getDevList, getLocalIP, addDev } from './service';
 import type { Reducer, Effect } from 'umi';
-import { DevListItem, SearchListItem } from './data.d';
+import type { DevListItem, SearchListItem } from './data.d';
 import Event from '@/utils/pushlish-subscribe';
 
 export type StateType = {
