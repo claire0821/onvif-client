@@ -7,8 +7,6 @@ import { PageContainer } from '_@ant-design_pro-layout@6.17.0@@ant-design/pro-la
 import type { DevListItem, SearchListItem } from './data.d';
 import type { ColumnProps } from '_antd@4.15.2@antd/lib/table';
 
-const { Option } = Select;
-
 type DevManagementProps = {
   dispatch: Dispatch;
   devManagement: StateType;
@@ -36,10 +34,26 @@ const DevList: React.FC<DevManagementProps> = ({
 
   const [ipSegment, setIPSegment] = React.useState('');
   const [visible, setVisible] = React.useState(false); // 添加设备窗口
+  const [options,setOptions] = React.useState([])
   const [devForm] = Form.useForm();
   useEffect(() => {
     console.log(ipSegment);
   }, [ipSegment]);
+  useEffect(() => {
+    console.log()
+    interface option {
+      value: string;
+      label: string;
+    }
+    const ips: option[] = []
+
+    localIP.forEach(element => {
+    
+      const str: option = {value: element, label: element}
+      ips.push(str)
+    });
+    setOptions(ips)
+}, [localIP]);
   const columns: ColumnProps<DevListItem>[] = [
     {
       title: 'IP',
@@ -131,10 +145,12 @@ const DevList: React.FC<DevManagementProps> = ({
       <Divider orientation="center">设备搜索</Divider>
       <div>
         <Button type="primary">刷新</Button>
-        <Select style={{ width: 150 }} value={ipSegment} onSelect={onSelectIPSegment}>
-          {localIP.map((ip) => (
+        <Select style={{ width: 150 }} value={ipSegment} onSelect={onSelectIPSegment}
+          options={options}>
+          {/* {localIP.map((ip) => (
             <Option key={ip}>{ip}</Option>
-          ))}
+          ))} */}
+        
         </Select>
         <Button type="primary" onClick={handleSearch}>
           搜索

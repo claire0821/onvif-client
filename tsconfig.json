@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@@/*": ["./src/.umi/*"]
-    }
+    },
+    "noImplicitThis": true, // 当源文件中存在this为any的时候报错
   },
   "include": [
     "mock/**/*",

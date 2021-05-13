@@ -117,6 +117,18 @@ export default defineConfig({
                   path: '/onvif/devices-management',
                   component: './onvif/devices-management',
                 },
+                {
+                  name: 'device-info',
+                  icon: 'smile',
+                  path: '/onvif/device-info',
+                  component: './onvif/device-info',
+                },
+                {
+                  name: 'media-info',
+                  icon: 'smile',
+                  path: '/onvif/media-info',
+                  component: './onvif/media-info',
+                },
               ],
             },
             {

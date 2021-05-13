@@ -1,11 +1,13 @@
 import { getDevByIpSegment, getDevList, getLocalIP, addDev } from './service';
 import type { Reducer, Effect } from 'umi';
 import { DevListItem, SearchListItem } from './data.d';
+import Event from '@/utils/pushlish-subscribe';
 
 export type StateType = {
   devList: DevListItem[]; // Partial<DevListItem>;// 类型转换
   localIP: []; // 本机ip段
   searchList: SearchListItem[]; // 搜索设备存放列表
+  controlDev: Partial<DevListItem>;// 控制设备
 };
 
 export type ModelType = {
@@ -17,6 +19,7 @@ export type ModelType = {
     fetchLocalIP: Effect;
     SearchDev: Effect;
     fetchAddDev: Effect;
+    fetchControlDev: Effect;
   };
   // 同步
   reducers: {
@@ -24,6 +27,7 @@ export type ModelType = {
     queryLocalIP: Reducer;
     querySearchDevList: Reducer<StateType>;
     addDev: Reducer;
+    changeControlDev: Reducer;
   };
 };
 
@@ -33,6 +37,7 @@ const Model: ModelType = {
     devList: [],
     localIP: [],
     searchList: [],
+    controlDev: {},
   },
 
   effects: {
@@ -78,6 +83,11 @@ const Model: ModelType = {
         yield take('fetch/@@end'); // 直到监听到b结束才继续执行
       }
     },
+    // 控制设备更改
+    *fetchControlDev({ payload }, {put}) {
+      console.log(payload);
+      yield put({ type: 'changeControlDev', payload }); // 触发b
+    }
   },
 
   reducers: {
@@ -105,6 +115,33 @@ const Model: ModelType = {
         searchList: action.payload,
       };
     },
+    changeControlDev(state,action) {
+      let dev: DevListItem = {
+        ip: '',
+        port: -1,
+        username: '',
+        password: '',
+        onvifAddress: '',
+        mediaUrl: '',
+        imagingUrl: '',
+        eventsUrl: '',
+        deviceUrl: '',
+        ptzUrl: '',
+        analyticsUrl: '',
+      }
+      state.devList.forEach((element: DevListItem) => {
+        if(element.ip === action.payload) {
+          dev = element
+        }
+      });
+      console.log('发布消息')
+      console.log(dev)
+      Event.trigger('changeDev', dev)// 发布
+      return {
+        ...(state as StateType),
+        controlDev: dev,
+      };
+    }
   },
 };
 

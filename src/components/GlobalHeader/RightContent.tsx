@@ -9,6 +9,8 @@ import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
 import NoticeIconView from './NoticeIconView';
+import DevSelect from '../ControllDevice';
+
 export type GlobalHeaderRightProps = {
   theme?: ProSettings['navTheme'] | 'realDark';
 } & Partial<ConnectProps> &
@@ -28,6 +30,8 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
   }
 
   return (
+    <div >
+      <DevSelect></DevSelect>
     <div className={className}>
       <HeaderSearch
         className={`${styles.action} ${styles.search}`}
@@ -76,6 +80,8 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
       )}
       <SelectLang className={styles.action} />
     </div>
+    </div>
+
   );
 };
 
