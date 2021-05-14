@@ -28,9 +28,13 @@ export type PanTiltLimitsItem = {
     Range: RangeItem;
 }
 
-export type ZoomLimitsItem = {
+export type ZoomRangeItem = {
     URI: string;
     XRange: XYRangeItem;
+}
+
+export type ZoomLimitsItem = {
+    Range: ZoomRangeItem;
 }
 export type PTZConfigurationItem = {
     token: string;
@@ -47,4 +51,11 @@ export type PTZConfigurationItem = {
     DefaultPTZTimeout: string;
     PanTiltLimits: PanTiltLimitsItem;
     ZoomLimits: ZoomLimitsItem;
+}
+
+export type PTZControlParamsItem = {
+    ip: string
+    command: number
+    speed: number
+    profileToken: string
 }

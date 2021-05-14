@@ -33,7 +33,7 @@ const Model: ModelType = {
             if(res.code === 1) {
                 yield put({
                     type: 'queryPTZInfo',
-                    payload: res.data,
+                    payload: res.data.PTZConfiguration,
                 })
             }
         }
